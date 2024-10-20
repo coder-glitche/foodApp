@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Budget Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div class="container">
+        <h1>Food Budget Tracker</h1>
+        <p>Remaining Budget: ₹<span id="remainingBudget">1000</span></p>
+        <p>Days Left: <span id="remainingDays">30</span></p>
+        
+        <h2>Select Food for Today</h2>
+        <div id="foodList">
+            <!-- Food options will be added here dynamically -->
+        </div>
+
+        <h2>Daily Log</h2>
+        <ul id="logList">
+            <!-- Log entries will appear here -->
+        </ul>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
