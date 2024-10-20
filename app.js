@@ -6,9 +6,9 @@ const foodItems = [
     { name: "Juice", price: 20 }
 ];
 
-let remainingBudget = 1000;
-let remainingDays = 30;
-let logList = [];
+let remainingBudget = localStorage.getItem('remainingBudget') ? parseFloat(localStorage.getItem('remainingBudget')) : 1000;
+let remainingDays = localStorage.getItem('remainingDays') ? parseInt(localStorage.getItem('remainingDays')) : 30;
+let logList = localStorage.getItem('logList') ? JSON.parse(localStorage.getItem('logList')) : [];
 
 document.addEventListener('DOMContentLoaded', () => {
     const budgetDisplay = document.getElementById('remainingBudget');
@@ -24,16 +24,27 @@ document.addEventListener('DOMContentLoaded', () => {
         foodList.appendChild(button);
     });
 
+    // Display saved data on load
+    updateDisplay();
+
     // Update budget and log when a food is selected
     function selectFood(item) {
         if (remainingDays > 0 && remainingBudget >= item.price) {
             remainingBudget -= item.price;
             remainingDays--;
             logList.push(`Day ${30 - remainingDays}: ${item.name} - ₹${item.price}`);
+            saveDataToLocalStorage();
             updateDisplay();
         } else {
             alert('Not enough budget or days left!');
         }
+    }
+
+    // Save data to localStorage
+    function saveDataToLocalStorage() {
+        localStorage.setItem('remainingBudget', remainingBudget);
+        localStorage.setItem('remainingDays', remainingDays);
+        localStorage.setItem('logList', JSON.stringify(logList));
     }
 
     // Update the display
