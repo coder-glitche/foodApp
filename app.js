@@ -16,10 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const foodList = document.getElementById('foodList');
     const logDisplay = document.getElementById('logList');
 
-    // Display food items as buttons
+    // Display food items as buttons with remaining counts
     foodItems.forEach(item => {
         const button = document.createElement('button');
-        button.textContent = `${item.name} - ₹${item.price}`;
+        button.textContent = `${item.name} - ₹${item.price} (Remaining: ${Math.floor(remainingBudget / item.price)})`;
         button.addEventListener('click', () => selectFood(item));
         foodList.appendChild(button);
     });
@@ -56,6 +56,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const li = document.createElement('li');
             li.textContent = entry;
             logDisplay.appendChild(li);
+        });
+
+        // Update remaining counts for each food item
+        foodList.innerHTML = '';
+        foodItems.forEach(item => {
+            const button = document.createElement('button');
+            button.textContent = `${item.name} - ₹${item.price} (Remaining: ${Math.floor(remainingBudget / item.price)})`;
+            button.addEventListener('click', () => selectFood(item));
+            foodList.appendChild(button);
         });
     }
 });
